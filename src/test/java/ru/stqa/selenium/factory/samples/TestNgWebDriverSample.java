@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.stqa.selenium.factory.WebDriverFactory;
+import ru.stqa.selenium.factory.WebDriverPool;
 
 public class TestNgWebDriverSample {
 
@@ -16,12 +16,12 @@ public class TestNgWebDriverSample {
 
   @BeforeMethod
   public void startBrowser() {
-    driver = WebDriverFactory.getDriver(DesiredCapabilities.firefox());
+    driver = WebDriverPool.DEFAULT.getDriver(DesiredCapabilities.firefox());
   }
 
   @AfterSuite
   public void stopAllBrowsers() {
-    WebDriverFactory.dismissAll();
+    WebDriverPool.DEFAULT.dismissAll();
   }
 
   @Test

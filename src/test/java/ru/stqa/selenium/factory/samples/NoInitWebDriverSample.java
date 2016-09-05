@@ -7,13 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import ru.stqa.selenium.factory.WebDriverFactory;
+import ru.stqa.selenium.factory.WebDriverPool;
 
 public class NoInitWebDriverSample {
 
   @AfterClass
   public static void stopAllBrowsers() {
-    WebDriverFactory.dismissAll();
+    WebDriverPool.DEFAULT.dismissAll();
   }
 
   @Test
@@ -32,7 +32,7 @@ public class NoInitWebDriverSample {
   }
 
   private void doSomething() {
-    WebDriver driver = WebDriverFactory.getDriver(DesiredCapabilities.firefox());
+    WebDriver driver = WebDriverPool.DEFAULT.getDriver(DesiredCapabilities.firefox());
     driver.get("http://seleniumhq.org/");
     driver.findElement(By.name("q")).sendKeys("selenium");
     driver.findElement(By.id("submit")).click();
