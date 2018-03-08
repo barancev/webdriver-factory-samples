@@ -1,34 +1,42 @@
 package ru.stqa.selenium.factory.samples;
 
-import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.stqa.selenium.factory.WebDriverPool;
 
 public class VariousBrowsersWebDriverSample {
 
-  @AfterClass
+  @AfterAll
   public static void stopAllBrowsers() {
     WebDriverPool.DEFAULT.dismissAll();
   }
 
   @Test
-  public void test1() {
-    doSomething(WebDriverPool.DEFAULT.getDriver(DesiredCapabilities.firefox()));
+  public void testFirefox() {
+    doSomething(WebDriverPool.DEFAULT.getDriver(new FirefoxOptions()));
   }
 
   @Test
-  public void test2() {
-    doSomething(WebDriverPool.DEFAULT.getDriver(DesiredCapabilities.internetExplorer()));
+  public void testInternetExplorer() {
+    doSomething(WebDriverPool.DEFAULT.getDriver(new InternetExplorerOptions()));
   }
 
   @Test
-  public void test3() {
-    doSomething(WebDriverPool.DEFAULT.getDriver(DesiredCapabilities.chrome()));
+  public void testChrome() {
+    doSomething(WebDriverPool.DEFAULT.getDriver(new ChromeOptions()));
+  }
+
+  @Test
+  public void testSafari() {
+    doSomething(WebDriverPool.DEFAULT.getDriver(new SafariOptions()));
   }
 
   private void doSomething(WebDriver driver) {

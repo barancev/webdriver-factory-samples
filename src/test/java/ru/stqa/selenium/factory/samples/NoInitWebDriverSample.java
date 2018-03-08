@@ -1,17 +1,17 @@
 package ru.stqa.selenium.factory.samples;
 
-import org.junit.AfterClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.stqa.selenium.factory.WebDriverPool;
 
 public class NoInitWebDriverSample {
 
-  @AfterClass
+  @AfterAll
   public static void stopAllBrowsers() {
     WebDriverPool.DEFAULT.dismissAll();
   }
@@ -32,7 +32,7 @@ public class NoInitWebDriverSample {
   }
 
   private void doSomething() {
-    WebDriver driver = WebDriverPool.DEFAULT.getDriver(DesiredCapabilities.firefox());
+    WebDriver driver = WebDriverPool.DEFAULT.getDriver(new FirefoxOptions());
     driver.get("http://seleniumhq.org/");
     driver.findElement(By.name("q")).sendKeys("selenium");
     driver.findElement(By.id("submit")).click();

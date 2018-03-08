@@ -1,11 +1,11 @@
 package ru.stqa.selenium.factory.samples;
 
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.stqa.selenium.factory.WebDriverPool;
@@ -14,12 +14,12 @@ public class JUnitWebDriverSample {
 
   WebDriver driver;
 
-  @Before
+  @BeforeEach
   public void startBrowser() {
-    driver = WebDriverPool.DEFAULT.getDriver(DesiredCapabilities.internetExplorer());
+    driver = WebDriverPool.DEFAULT.getDriver(new FirefoxOptions());
   }
 
-  @AfterClass
+  @AfterAll
   public static void stopAllBrowsers() {
     WebDriverPool.DEFAULT.dismissAll();
   }
